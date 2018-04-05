@@ -6,6 +6,20 @@
  Requires core.js and OrderedSelectBox.js
  */
 
+// Cross-browser event handlers.
+function addEvent(obj, evType, fn) {
+    'use strict';
+    if (obj.addEventListener) {
+        obj.addEventListener(evType, fn, false);
+        return true;
+    } else if (obj.attachEvent) {
+        var r = obj.attachEvent("on" + evType, fn);
+        return r;
+    } else {
+        return false;
+    }
+}
+
 function findForm(node) {
     // returns the node of the form containing the given node
     if (node.tagName.toLowerCase()  != 'form') {
